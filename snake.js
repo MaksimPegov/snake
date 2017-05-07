@@ -3,6 +3,8 @@ function Snake() {
     this.y = 0;
     this.xspead = 0;
     this.yspead = 1;
+    this.size = 1;
+    this.tail =[];
 
     this.move = function() {
         this.x += this.xspead * SCL;
@@ -20,13 +22,37 @@ function Snake() {
 
     }
 
+    this.eat = function(food) {
+        if(this.x == food.x && this.y == food.y){
+            this.size += 1;
+            console.log('ням!');
+            return true;
+            
+        } else return false;
+
+    }
+
     this.dir = function(x, y){
         this.xspead = x;
         this.yspead = y;
     }
 
-    this.show = function() {
+    this.show = function() {debugger
+        if(this.size === this.tail.length){  
+            for (var i = 0; i < this.tail.length - 1; i++){
+                this.tail[i] = this.tail[i+1];
+            }
+        }
+        this.tail[this.size-1] = createVector(this.x, this.y)
         fill(255);
-        rect(this.x, this.y, SCL, SCL);
+        // Нарисовать голову
+        rect(this.x, this.y, SCL, SCL); 
+        // Нарисовать хвост
+        for (var i = 0; i < this.tail.length; i++) {
+            var el = this.tail[i];
+            rect(el.x, el.y, SCL, SCL)
+
+            
+        }
     }
 }
