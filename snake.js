@@ -4,7 +4,7 @@ function Snake() {
     this.xspead = 0;
     this.yspead = 1;
     this.size = 1;
-    this.tail =[];
+    this.tail = [];
 
     this.move = function() {
         this.x += this.xspead * SCL;
@@ -20,6 +20,18 @@ function Snake() {
             this.y = 600
         }
 
+    }
+
+    this.death = function() {
+        for (var i = 0; i < this.tail.length; i++) {
+            var el = this.tail[i];
+            if (el.x === this.x && this.y === el.y) {
+                this.size = 1;
+                this.tail = [];
+                console.log('ЛОХ!...')
+            }
+            
+        }
     }
 
     this.eat = function(food) {

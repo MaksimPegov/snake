@@ -21,7 +21,8 @@ function pickLocation(){
 
 function draw(){
     background(51);
-    snake.move(); // \                     перемещаем змею
+    snake.move(); // перемещаем змею
+    snake.death();// проверка на смерть
     snake.show(); // рисуем змею
     var happi = snake.eat(food); // Пытаемся съесть еду
     if (happi){
@@ -33,7 +34,6 @@ function draw(){
 
 function keyPressed(){
     if(keyCode === UP_ARROW){
-        console.log(snake.yspead)
         snake.yspead !== 1 && snake.dir(0, -1)
     } else if (keyCode === DOWN_ARROW){
         snake.yspead !== -1 && snake.dir(0, 1)
